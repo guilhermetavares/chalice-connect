@@ -1,6 +1,6 @@
 import os
 
-from uplink import Body, Consumer, Query, get, json, returns
+from uplink import Path, Body, Consumer, Query, get, json, returns
 
 
 GILAB_PRIVATE_TOKEN = os.environ.get('GILAB_PRIVATE_TOKEN', '')
@@ -15,6 +15,15 @@ class GitlabClient(Consumer):
         self.session.headers.update(
             {"PRIVATE-TOKEN": GILAB_PRIVATE_TOKEN}
         )
+
+    @json
+    @returns.json
+    @get("merge_requests/{project_id}/merge_requests")
+    def project_merge_requests(self,
+            project_id: Path(),
+            scope: Query("scope") = None,
+            state: Query("state") = None):
+        pass
 
     @json
     @returns.json
