@@ -18,7 +18,7 @@ class GitlabClient(Consumer):
 
     @json
     @returns.json
-    @get("merge_requests/{project_id}/merge_requests")
+    @get("projects/{project_id}/merge_requests")
     def project_merge_requests(self,
             project_id: Path(),
             scope: Query("scope") = None,
